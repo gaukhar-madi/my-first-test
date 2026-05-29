@@ -53,5 +53,7 @@ public class MyFirstFormTest {
 
         $("#submit").click();
 
+        System.out.printf("!!!!!!!");
+
     }
 }
