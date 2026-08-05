@@ -5,43 +5,33 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byClassName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-
-
+import static testdata.TestData.*;
 
 public class MyFirstFormTest extends TestBase{
 
     @Test
-    void fillFormTest(){
+    void fillFullFormTest(){
 
      // Заполнение полей
-        $("[id=firstName]").setValue("Michael");
-        $("[id=lastName]").setValue("Thomas");
-        $("[id=userEmail]").setValue("michaelthomas@mail.ru");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("[id=userNumber]").setValue("7770005555");
-
+        $("[id=firstName]").setValue(name);
+        $("[id=lastName]").setValue(surname);
+        $("[id=userEmail]").setValue(userEmail);
+        $("#genterWrapper").$(byText(gender)).click();
+        $("[id=userNumber]").setValue(phoneNumber);
         $("[id=dateOfBirthInput]").click();
-        $(byClassName("react-datepicker__year-select")).selectOption("2001");
-        $(byClassName("react-datepicker__day--001")).click();
-
-        $("#hobbiesWrapper").$(byText("Music")).click();
-
-        $("#uploadPicture").uploadFromClasspath("images/hailey-baldwin.jpg");
-
-        $("[id=currentAddress]").setValue("Baker Street 9");
-
+        $(byClassName("react-datepicker__year-select")).selectOption(birthYear);
+        $(".react-datepicker__month-select").selectOption(birthMonth);
+        String formattedDay = String.format("%03d", birthDay);
+        $(".react-datepicker__day--" + formattedDay).click();
+        $("#hobbiesWrapper").$(byText(hobby)).click();
+        $("#uploadPicture").uploadFromClasspath("images/" + picture);
+        $("[id=currentAddress]").setValue(currentAddress);
         $(byClassName("css-1xc3v61-indicatorContainer")).scrollIntoView(true).click();
-        $("#react-select-3-input").setValue("Rajasthan").pressEnter();
-
-        $("#react-select-4-input").setValue("Jaipur").pressEnter();
-
+        $("#react-select-3-input").setValue(state).pressEnter();
+        $("#react-select-4-input").setValue(city).pressEnter();
         SelenideElement button = $("#submit");
         button.click();
-
         // Check for Thank you message
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-
-        // Print that test is successful
-        System.out.println("Форма успешно заполнена. Тест пройден");
+        $("#example-modal-sizes-title-lg").shouldHave(text(thankYouMsg));
     }
 }
