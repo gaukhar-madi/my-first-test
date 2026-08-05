@@ -26,4 +26,4 @@ gradlew
 gradlew.bat
 .idea
 .gradle
-build/
+build/.idea/
