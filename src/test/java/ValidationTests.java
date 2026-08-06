@@ -38,7 +38,7 @@ public class ValidationTests extends TestBase {
     }
 
     @Test
-    void longMobileNumber(){
+    void shortMobileNumber(){
 
         // вводим номер телефона < 10 цифр
         $("[id=userNumber]").setValue(incorrectPhoneNumber);
