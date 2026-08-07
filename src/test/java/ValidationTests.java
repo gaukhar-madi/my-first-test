@@ -13,7 +13,7 @@ public class ValidationTests extends TestBase {
     void emptyLastNameTest(){
 
         // заполнить имя
-        $("[id=firstName]").setValue(name);
+        $("[id=firstName]").setValue(firstName);
         $("#submit").click();
 
         // проверить класс валидации отображается

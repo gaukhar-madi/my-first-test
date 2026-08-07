@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 
@@ -8,14 +9,19 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static testdata.TestData.*;
 
-public class MyFirstFormTest extends TestBase{
+public class MyFirstFormTest extends TestBase {
 
     @Test
-    void fillFullFormTest(){
+    void fillFullFormTest() {
 
-     // Заполнение полей
-        $("[id=firstName]").setValue(name);
-        $("[id=lastName]").setValue(surname);
+        open(fullFormPage);
+        executeJavaScript("""
+        document.getElementById('fixedban')?.remove();
+        document.querySelector('footer')?.remove();
+        """);
+        // Заполнение полей
+        $("[id=firstName]").setValue(firstName);
+        $("[id=lastName]").setValue(lastName);
         $("[id=userEmail]").setValue(userEmail);
         $("#genterWrapper").$(byText(gender)).click();
         $("[id=userNumber]").setValue(phoneNumber);
@@ -29,16 +35,17 @@ public class MyFirstFormTest extends TestBase{
         $("#hobbiesWrapper").$(byText(hobby)).click();
         $("#uploadPicture").uploadFromClasspath("images/" + picture);
         $("[id=currentAddress]").setValue(currentAddress);
-        $(byClassName("css-1xc3v61-indicatorContainer")).scrollIntoView(true).click();
+        $("#state").scrollTo().shouldBe(Condition.visible).click();
         $("#react-select-3-input").setValue(state).pressEnter();
         $("#react-select-4-input").setValue(city).pressEnter();
-        SelenideElement button = $("#submit");
-        button.click();
+        $("#submit").scrollIntoView(true);
+        executeJavaScript("arguments[0].click();", $("#submit"));
+
         // Check for Thank you message
         $("#example-modal-sizes-title-lg").shouldHave(text(thankYouMsg));
 
         //Проверка заполненных полей
-        $(".table-responsive").shouldHave(text(name + " " + surname));
+        $(".table-responsive").shouldHave(text(firstName + " " + lastName));
         $(".table-responsive").shouldHave(text(userEmail));
         $(".table-responsive").shouldHave(text(phoneNumber));
         $(".table-responsive").shouldHave(text(gender));
@@ -47,5 +54,24 @@ public class MyFirstFormTest extends TestBase{
         $(".table-responsive").shouldHave(text(subject));
         $(".table-responsive").shouldHave(text(state));
         $(".table-responsive").shouldHave(text(city));
+    }
+
+    @Test
+    void fillShortFormTest(){
+        open(shortFormPage);
+        // Заполнение полей
+        $("#userName").setValue(firstName + " " + lastName);
+        $("#userEmail").setValue(userEmail);
+        $("#currentAddress").setValue(currentAddress);
+        $("#permanentAddress").setValue(permanentAddress);
+
+        $("#submit").click();
+
+        // Проверка выведенных результатов
+        $("#output").shouldBe(visible);
+        $("#output #name").shouldHave(text(firstName + " " + lastName));
+        $("#output #email").shouldHave(text(userEmail));
+        $("#output #currentAddress").shouldHave(text(currentAddress));
+        $("#output #permanentAddress").shouldHave(text(permanentAddress));
     }
 }
