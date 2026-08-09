@@ -1,8 +1,7 @@
 package testdata;
 
 public class TestData {
-    public static String fullFormPage = "/automation-practice-form";
-    public static String shortFormPage = "/text-box";
+
     public static String firstName = "Michael";
     public static String lastName = "Thomas";
     public static String userEmail = "michael.thomas@gmail.com";

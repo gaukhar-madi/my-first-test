@@ -20,15 +20,6 @@ public class TestBase {
         Configuration.pageLoadStrategy = "eager";
     }
 
-    @BeforeEach
-    void beforeEach() {
-
-        open("/automation-practice-form");
-        executeJavaScript("""
-        document.getElementById('fixedban')?.remove();
-        document.querySelector('footer')?.remove();
-        """);
-    }
 
     @AfterEach
     void tearDown() {

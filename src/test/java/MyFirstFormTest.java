@@ -14,7 +14,7 @@ public class MyFirstFormTest extends TestBase {
     @Test
     void fillFullFormTest() {
 
-        open(fullFormPage);
+        open("/automation-practice-form");
         executeJavaScript("""
         document.getElementById('fixedban')?.remove();
         document.querySelector('footer')?.remove();
@@ -40,6 +40,7 @@ public class MyFirstFormTest extends TestBase {
         $("#react-select-4-input").setValue(city).pressEnter();
         $("#submit").scrollIntoView(true);
         executeJavaScript("arguments[0].click();", $("#submit"));
+        //$("#submit").scrollIntoView(true).click();
 
         // Check for Thank you message
         $("#example-modal-sizes-title-lg").shouldHave(text(thankYouMsg));
@@ -58,7 +59,7 @@ public class MyFirstFormTest extends TestBase {
 
     @Test
     void fillShortFormTest(){
-        open(shortFormPage);
+        open("/text-box");
         // Заполнение полей
         $("#userName").setValue(firstName + " " + lastName);
         $("#userEmail").setValue(userEmail);

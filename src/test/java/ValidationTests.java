@@ -12,6 +12,7 @@ public class ValidationTests extends TestBase {
     @Test
     void emptyLastNameTest(){
 
+        open("/automation-practice-form");
         // заполнить имя
         $("[id=firstName]").setValue(firstName);
         $("#submit").click();
@@ -27,6 +28,7 @@ public class ValidationTests extends TestBase {
     @Test
     void wrongEmailForm(){
 
+        open("/automation-practice-form");
         // вводим email без точки и доменной зоны
         $("[id=userEmail]").setValue(incorrectEmail);
         $("#submit").click();
@@ -40,6 +42,7 @@ public class ValidationTests extends TestBase {
     @Test
     void shortMobileNumber(){
 
+        open("/automation-practice-form");
         // вводим номер телефона < 10 цифр
         $("[id=userNumber]").setValue(incorrectPhoneNumber);
         $("#submit").click();
