@@ -1,4 +1,4 @@
-package testdata;
+package tests.testdata;
 
 public class TestData {
 
@@ -19,5 +19,4 @@ public class TestData {
     public static String picture = "hailey-baldwin.jpg";
     public static String state = "Rajasthan";
     public static String city = "Jaipur";
-    public static String thankYouMsg = "Thanks for submitting the form";
 }

@@ -1,10 +1,12 @@
+package tests;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selectors.byClassName;
 import static com.codeborne.selenide.Selenide.*;
-import static testdata.TestData.*;
+import static tests.testdata.TestData.*;
 
 public class ValidationTests extends TestBase {
 

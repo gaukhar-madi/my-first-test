@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MyFirstFormTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-08-09T18:17:36" hostname="MacBook-Pro-Gaukhar.local" time="10.298">
+<testsuite name="tests.MyFirstFormTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-08-11T04:54:25" hostname="MacBook-Pro-Gaukhar.local" time="8.249">
   <properties/>
-  <testcase name="fillFullFormTest()" classname="MyFirstFormTest" time="10.298"/>
+  <testcase name="fillShortFormTest()" classname="tests.MyFirstFormTest" time="8.249"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[SLF4J(W): No SLF4J providers were found.
 SLF4J(W): Defaulting to no-operation (NOP) logger implementation
 SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
-авг. 09, 2026 11:17:43 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+авг. 11, 2026 9:54:31 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 151
-авг. 09, 2026 11:17:43 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$4
+авг. 11, 2026 9:54:31 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$4
 WARNING: Unable to find version of CDP to use for 151.0.7922.76. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.29.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
 </testsuite>
