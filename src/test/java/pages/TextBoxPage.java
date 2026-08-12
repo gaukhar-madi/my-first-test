@@ -4,8 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxPage {
 
@@ -18,6 +17,10 @@ public class TextBoxPage {
 
     public TextBoxPage openPage() {
         open("/text-box");
+        executeJavaScript("""
+        document.getElementById('fixedban')?.remove();
+        document.querySelector('footer')?.remove();
+        """);
         return this;
     }
 

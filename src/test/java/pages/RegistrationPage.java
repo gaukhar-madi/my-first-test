@@ -2,6 +2,11 @@ package pages;
 
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
+import pages.components.TableComponent;
+
+import java.util.Calendar;
+
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -11,6 +16,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
+    CalendarComponent calendar = new CalendarComponent();
+    TableComponent tableComponent = new TableComponent();
     // Элементы формы
     private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
@@ -18,8 +25,6 @@ public class RegistrationPage {
             genderWrapper = $("#genterWrapper"),
             userNumberInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
-            yearPicker =  $(byClassName("react-datepicker__year-select")),
-            monthPicker = $(".react-datepicker__month-select"),
             subjectsInput = $("#subjectsInput"),
             hobbiesWrapper = $("#hobbiesWrapper"),
             pictureUpload =$("#uploadPicture"),
@@ -27,13 +32,15 @@ public class RegistrationPage {
             stateElement = $("#state"),
             stateInput = $("#react-select-3-input"),
             cityInput = $("#react-select-4-input"),
-            submitButton = $("#submit"),
-            modalResult = $(".modal-content"),
-            tableResult = $(".table-responsive");
+            submitButton = $("#submit");
 
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        executeJavaScript("""
+        document.getElementById('fixedban')?.remove();
+        document.querySelector('footer')?.remove();
+        """);
         return this;
     }
 
@@ -62,13 +69,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirth (String birthYear, String birthMonth, int birthDay) {
-
+    public RegistrationPage setDateOfBirth(String year, String month, String day) {
         dateOfBirthInput.click();
-        yearPicker.selectOption(birthYear);
-        monthPicker.selectOption(birthMonth);
-        String formattedDay = String.format("%03d", birthDay);
-        $(".react-datepicker__day--" + formattedDay + ":not(.react-datepicker__day--outside-month)").click();
+        calendar.setDate(year, month, day);
 
         return this;
     }
@@ -110,13 +113,14 @@ public class RegistrationPage {
         return this;
     }
 
+
     public RegistrationPage checkResultModalAppears() {
-        modalResult.shouldBe(visible);
+        tableComponent.checkRegistrationResult();
         return this;
     }
 
     public RegistrationPage checkResult(String key, String value) {
-        tableResult.$(byText(key)).parent().shouldHave(text(value));
+        tableComponent.checkFinalTable(key, value);
         return this;
     }
 }

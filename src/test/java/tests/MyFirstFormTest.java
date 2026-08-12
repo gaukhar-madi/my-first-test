@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.TextBoxPage;
 
-import static com.codeborne.selenide.Selenide.*;
 import static tests.testdata.TestData.*;
 
 public class MyFirstFormTest extends TestBase {
@@ -14,12 +13,6 @@ public class MyFirstFormTest extends TestBase {
 
     @Test
     void fillFullFormTest() {
-
-        open("/automation-practice-form");
-        executeJavaScript("""
-        document.getElementById('fixedban')?.remove();
-        document.querySelector('footer')?.remove();
-        """);
 
         registrationPage.openPage()
                 .setFirstName(firstName)

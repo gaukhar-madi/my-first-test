@@ -11,7 +11,7 @@ public class TestData {
     public static String incorrectPhoneNumber = "747220770";
     public static String birthYear = "1993";
     public static String birthMonth = "June";
-    public static int birthDay = 7;
+    public static String birthDay = "7";
     public static String currentAddress = "First Avenue 1";
     public static String permanentAddress = "Second Avenue 2";
     public static String subject = "Math";

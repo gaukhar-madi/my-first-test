@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,10 @@ public class ValidationTests extends TestBase {
         open("/automation-practice-form");
         // заполнить имя
         $("[id=firstName]").setValue(firstName);
-        $("#submit").click();
+
+        SelenideElement submitButton = $("#submit");
+        submitButton.scrollIntoView(true);
+        executeJavaScript("arguments[0].click();", submitButton);
 
         // проверить класс валидации отображается
         boolean displayed = $(byClassName("was-validated")).isDisplayed();
@@ -33,7 +37,9 @@ public class ValidationTests extends TestBase {
         open("/automation-practice-form");
         // вводим email без точки и доменной зоны
         $("[id=userEmail]").setValue(incorrectEmail);
-        $("#submit").click();
+        SelenideElement submitButton = $("#submit");
+        submitButton.scrollIntoView(true);
+        executeJavaScript("arguments[0].click();", submitButton);
         // проверить класс валидации отображается
         boolean displayed = $(byClassName("was-validated")).isDisplayed();
         Assertions.assertTrue(displayed);
@@ -47,7 +53,9 @@ public class ValidationTests extends TestBase {
         open("/automation-practice-form");
         // вводим номер телефона < 10 цифр
         $("[id=userNumber]").setValue(incorrectPhoneNumber);
-        $("#submit").click();
+        SelenideElement submitButton = $("#submit");
+        submitButton.scrollIntoView(true);
+        executeJavaScript("arguments[0].click();", submitButton);
         // проверить класс валидации отображается
         boolean displayed = $(byClassName("was-validated")).isDisplayed();
         Assertions.assertTrue(displayed);
