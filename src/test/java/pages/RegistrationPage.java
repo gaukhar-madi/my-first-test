@@ -2,14 +2,11 @@ package pages;
 
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Assertions;
 import pages.components.CalendarComponent;
 import pages.components.TableComponent;
 
-import java.util.Calendar;
 
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byClassName;
 import static com.codeborne.selenide.Selenide.*;
@@ -32,18 +29,22 @@ public class RegistrationPage {
             stateElement = $("#state"),
             stateInput = $("#react-select-3-input"),
             cityInput = $("#react-select-4-input"),
-            submitButton = $("#submit");
+            submitButton = $("#submit"),
+            validationIndicator = $(byClassName("was-validated"));
 
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        return this;
+    }
+
+    public RegistrationPage removeAdBanners() {
         executeJavaScript("""
         document.getElementById('fixedban')?.remove();
         document.querySelector('footer')?.remove();
         """);
         return this;
     }
-
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
@@ -113,6 +114,10 @@ public class RegistrationPage {
         return this;
     }
 
+    public void checkValidation(){
+        boolean displayed = validationIndicator.isDisplayed();
+        Assertions.assertTrue(displayed);
+    }
 
     public RegistrationPage checkResultModalAppears() {
         tableComponent.checkRegistrationResult();

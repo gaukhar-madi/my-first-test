@@ -15,6 +15,7 @@ public class MyFirstFormTest extends TestBase {
     void fillFullFormTest() {
 
         registrationPage.openPage()
+                .removeAdBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -48,6 +49,7 @@ public class MyFirstFormTest extends TestBase {
     void fillShortFormTest(){
 
         textBoxPage.openPage()
+                .removeAdBanners()
                 .setFullName(firstName + " " + lastName)
                 .setEmail(userEmail)
                 .setCurrentAddress(currentAddress)
