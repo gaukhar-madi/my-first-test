@@ -4,43 +4,44 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.TextBoxPage;
 
-import static tests.testdata.TestData.*;
+import tests.testdata.TestData;
 
 public class MyFirstFormTest extends TestBase {
 
     TextBoxPage textBoxPage = new TextBoxPage();
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
     @Test
     void fillFullFormTest() {
 
         registrationPage.openPage()
                 .removeAdBanners()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(userEmail)
-                .setGender(gender)
-                .setUserNumber(phoneNumber)
-                .setDateOfBirth(birthYear, birthMonth, birthDay)
-                .setSubject(subject)
-                .setHobby(hobby)
-                .uploadPicture(picture)
-                .setCurrentAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setUserEmail(testData.userEmail)
+                .setGender(testData.gender)
+                .setUserNumber(testData.phoneNumber)
+                .setDateOfBirth(testData.birthYear, testData.birthMonth, testData.birthDay)
+                .setSubject(testData.subject)
+                .setHobby(testData.hobby)
+                .uploadPicture(testData.picture)
+                .setCurrentAddress(testData.currentAddress)
+                .setState(testData.state)
+                .setCity(testData.city)
                 .submit();
 
 
         registrationPage.checkResultModalAppears()
-                .checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", phoneNumber)
-                .checkResult("Date of Birth", birthDay + " " + birthMonth + "," + birthYear)
-                .checkResult("Subjects", subject)
-                .checkResult("Hobbies", hobby)
-                .checkResult("Address", currentAddress)
-                .checkResult("State and City", state + " " + city);
+                .checkResult("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResult("Student Email", testData.userEmail)
+                .checkResult("Gender", testData.gender)
+                .checkResult("Mobile", testData.phoneNumber)
+                .checkResult("Date of Birth", testData.birthDay + " " + testData.birthMonth + "," + testData.birthYear)
+                .checkResult("Subjects", testData.subject)
+                .checkResult("Hobbies", testData.hobby)
+                .checkResult("Address", testData.currentAddress)
+                .checkResult("State and City", testData.state + " " + testData.city);
 
 
     }
@@ -50,11 +51,11 @@ public class MyFirstFormTest extends TestBase {
 
         textBoxPage.openPage()
                 .removeAdBanners()
-                .setFullName(firstName + " " + lastName)
-                .setEmail(userEmail)
-                .setCurrentAddress(currentAddress)
-                .setPermanentAddress(permanentAddress)
+                .setFullName(testData.firstName + " " + testData.lastName)
+                .setEmail(testData.userEmail)
+                .setCurrentAddress(testData.currentAddress)
+                .setPermanentAddress(testData.permanentAddress)
                 .submit()
-                .checkResult(firstName + " " + lastName, userEmail, currentAddress, permanentAddress);
+                .checkResult(testData.firstName + " " + testData.lastName, testData.userEmail, testData.currentAddress, testData.permanentAddress);
     }
 }

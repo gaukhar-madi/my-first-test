@@ -2,19 +2,21 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import tests.testdata.TestData;
 
 import static tests.testdata.TestData.*;
 
 public class ValidationTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
     @Test
     void emptyLastNameTest(){
 
         registrationPage.openPage()
                 .removeAdBanners()
-                .setFirstName(firstName)
+                .setFirstName(testData.firstName)
                 .submit()
                 .checkValidation();
     }
