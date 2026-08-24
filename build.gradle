@@ -17,6 +17,7 @@ dependencies {
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'io.qameta.allure:allure-junit5:2.33.0'
     testImplementation 'io.qameta.allure:allure-selenide:2.33.0'
+    testImplementation 'org.aeonbits.owner:owner:1.0.12'
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
@@ -39,6 +40,13 @@ allure {
 tasks.withType(Test) {
     useJUnitPlatform()
     ignoreFailures = true
+
+    // Пробрасываем параметры из командной строки (-Dbrowser=... и т.д.) в форкнутую тест-JVM
+    ['baseUrl', 'remoteUrl', 'browser', 'browserVersion', 'browserSize', 'headless'].each { key ->
+        if (System.getProperty(key) != null) {
+            systemProperty key, System.getProperty(key)
+        }
+    }
 
     testLogging {
         lifecycle {
