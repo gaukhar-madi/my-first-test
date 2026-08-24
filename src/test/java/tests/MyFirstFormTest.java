@@ -1,11 +1,21 @@
 package tests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.TextBoxPage;
 
 import tests.testdata.TestData;
 
+@Feature("Формы на demoqa.com")
+@Owner("gaukhar")
+@Tag("form")
 public class MyFirstFormTest extends TestBase {
 
     TextBoxPage textBoxPage = new TextBoxPage();
@@ -13,6 +23,9 @@ public class MyFirstFormTest extends TestBase {
     TestData testData = new TestData();
 
     @Test
+    @Story("Форма практики регистрации студента")
+    @DisplayName("Заполнение полной формы регистрации")
+    @Severity(SeverityLevel.CRITICAL)
     void fillFullFormTest() {
 
         registrationPage.openPage()
@@ -47,6 +60,9 @@ public class MyFirstFormTest extends TestBase {
     }
 
     @Test
+    @Story("Форма Text Box")
+    @DisplayName("Заполнение короткой формы Text Box")
+    @Severity(SeverityLevel.NORMAL)
     void fillShortFormTest(){
 
         textBoxPage.openPage()
