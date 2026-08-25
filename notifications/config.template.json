@@ -1,0 +1,18 @@
+{
+  "base": {
+    "project": "my-first-test",
+    "environment": "qa_guru",
+    "comment": "Notification for @gaukhar_madi",
+    "reportLink": "${BUILD_URL}allure/",
+    "language": "en",
+    "allureFolder": "build/reports/allure-report/allureReport",
+    "allureResultsFolder": "build/allure-results",
+    "enableChart": true,
+    "darkMode": true
+  },
+  "telegram": {
+    "token": "${TELEGRAM_TOKEN}",
+    "chat": "${TELEGRAM_CHAT}",
+    "topic": ""
+  }
+}
