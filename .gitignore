@@ -29,3 +29,8 @@ out/
 # Логи ошибок Java
 hs_err_pid*
 replay_pid*
+
+# Секреты и генерируемые файлы allure-notifications (содержат токен бота / артефакты)
+notifications/config.json
+notifications/draft.txt
+notifications/chart.png

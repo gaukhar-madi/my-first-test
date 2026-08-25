@@ -55,3 +55,9 @@ tasks.withType(Test) {
         }
     }
 }
+
+task form_test(type: Test){
+    useJUnitPlatform {
+        includeTags("form")
+    }
+}
