@@ -5,7 +5,7 @@
     "comment": "Notification for @gaukhar_madi",
     "reportLink": "${BUILD_URL}allure/",
     "language": "en",
-    "allureFolder": "build/reports/allure-report/allureReport",
+    "allureFolder": "allure-report",
     "allureResultsFolder": "build/allure-results",
     "enableChart": true,
     "darkMode": true
